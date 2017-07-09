@@ -28,11 +28,14 @@ public class DialogShowNote extends DialogFragment {
 
         TextView txtDescription = (TextView) dialogView.findViewById(R.id.txtDescription);
         TextView txtTitle = (TextView) dialogView.findViewById(R.id.txtTitle);
+        txtTitle.setText(mNote.getTitle());
+        txtDescription.setText(mNote.getDescription());
+
         ImageView ivImportant = (ImageView) dialogView.findViewById(R.id.imageViewImportant);
         ImageView ivTodo = (ImageView) dialogView.findViewById(R.id.imageViewTodo);
         ImageView ivIdea = (ImageView) dialogView.findViewById(R.id.imageViewIdea);
 
-        if (!mNote.isIdeea()){
+        if (!mNote.isIdea()){
             ivIdea.setVisibility(View.GONE);
         }
         if (!mNote.isImportant()){

@@ -28,7 +28,7 @@ public class Note {
         this.mDescription = mDescription;
     }
 
-    public Boolean isIdeea() {
+    public Boolean isIdea() {
         return mIdeea;
     }
 
