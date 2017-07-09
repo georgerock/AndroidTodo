@@ -1,9 +1,10 @@
 package com.whitecitycode.cgeorge.notetoself;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private NoteAdapter mNoteAdapter;
+    private boolean mSound;
+    private int mAnimOption;
+    private SharedPreferences mPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
             DialogNewNote dialog = new DialogNewNote();
             dialog.show(getFragmentManager(), "");
             return true;
+        }
+
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -128,4 +137,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        mPref = getSharedPreferences("Note to Self", MODE_PRIVATE);
+        mSound = mPref.getBoolean("sound", true);
+        mAnimOption = mPref.getInt("anim option", SettingsActivity.FAST);
+    }
 }
